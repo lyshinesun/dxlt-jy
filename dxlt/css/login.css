@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
+.fl {
+    float: left;
+    display: inline;
+}
+
+.fr {
+    float: right;
+    display: inline;
+}
+
+.clearfix {
+    /*overflow: hidden;*/
+    _height: 1%;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    zoom: 1;
+}
+
+li{
+    list-style: none;
+}
+.login {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background-color: #293d50;
+}
+.login_wrap{
+    width: 320px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 180px auto 0;
+    overflow: hidden;
+}
+
+.zn_form{
+    padding: 0 20px 20px;
+}
+
+.login_wrap input[type='text'],.login_wrap input[type='password']{
+    width: 100%;
+    height: 28px;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: url(../images/login/yg_ico1.png) 10px center #ffffff no-repeat;
+    border-radius: 3px;
+    padding-left: 35px;
+    border: 1px solid #C9D4E2;
+    font-size: 16px;
+    color: #999;
+}
+.login_wrap input[type='password']{
+    background: url(../images/login/yg_ico2.png) 10px center #ffffff no-repeat;
+}
+.login_select{
+    margin: 10px 0;
+}
+.zn_iub{
+    width: 100%;
+    background: #24c6c6;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.zn_title2{
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    background-color:#24c6c6;
+    margin: 0;
+}
+
+.zn_name{
+    margin: 3px;
+}

@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>箱变矩阵</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_main.css"/>
+</head>
+<body>
+<input id="psId" type="hidden" value="109189"/>
+<input id="psScheme" type="hidden" value="2"/>
+<input id="psType" type="hidden" value="1"/>
+<input id="screenVersion" type="hidden" value="3"/>
+
+<div class="box_show clearfix" id="powerMatrix">
+    <div class="show_main clearfix">
+        <div class="showm_content clearfix">
+            <div class="showm_top clearfix">
+                <div class="showm_top_left fl clearfix">
+                    <ul>
+                        <li>
+                            <span id="unitName" class="dialogTile showInverter"
+                                  style="display:none; float:left; cursor: pointer;color:#0aaafd" @click="toUnit()">Back</span>
+                            <span class="dialogTile showInverter" style="display:none; float:left">></span>
+                            <span id="dialogTile" class="dialogTile" style="float:left"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="time_menunav clearfix">
+                    <ul @click="showEqHourData($event)">
+                        <li class="on"><a dateTabType="1" href="javascript:;">日</a></li>
+                        <li><a dateTabType="2" href="javascript:;">月</a></li>
+                        <li><a dateTabType="3" href="javascript:;">年</a></li>
+                    </ul>
+                </div>
+                <div class="showm_top_right fr clearfix">
+                    <a href="javascript:;" class="close fr" @click="toDetailInfo">关闭</a>
+                </div>
+            </div>
+            <div class="showm_bottom clearfix">
+                <div class="time_slide_box clearfix">
+                    <a href="javascript:;" class="left_min_btn fl" id="left_min_btn" @click="arrowChangeDate"></a>
+
+                    <div class="time_slide_input fl"><input id="dateInput" type="text" readonly="readonly"/></div>
+                    <a href="javascript:;" class="right_min_btn fr" id="right_min_btn" @click="arrowChangeDate"></a>
+                </div>
+                <a href="javascript:;" class="left_max_btn" id="left_max_btn" ></a>
+                <a href="javascript:;" class="right_max_btn" id="right_max_btn" ></a>
+
+                <div align="center" class="loadingDiv">
+                    <img src="images/loading.gif"/>
+                </div>
+                <div id="dxxsAll" class="plan_dxxsAll" style="padding-top: 33px">
+                    <div class="top_device_status clearfix">
+                        <ul style="width: 100%; margin-left: 188px;">
+                            <li>
+                                <div class="color_div deviceNice"></div>
+                                <div class="fl">优</div>
+                            </li>
+                            <li>
+                                <div class="color_div deviceFine"></div>
+                                <div class="fl">良</div>
+                            </li>
+                            <li>
+                                <div class="color_div deviceCommon"></div>
+                                <div class="fl">一般</div>
+                            </li>
+                            <li>
+                                <div class="color_div deviceWorse"></div>
+                                <div class="fl">较差</div>
+                            </li>
+                            <li>
+                                <div class="color_div deviceBad"></div>
+                                <div class="fl">差</div>
+                            </li>
+                            <li style="margin-right: 0px;">
+                                <div class="color_div deviceNoState"></div>
+                                <div class="fl">未知</div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <ul id="deviceUl" class="clearfix"></ul>
+
+                </div>
+            </div>
+            <div class="nav_hd clearfix">
+                <ul id="pagenation">
+                    <li v-for="(item,index) in items" v-if="item.active" class="on"
+                        @click="changePage($event,index)"></li>
+                    <li v-else @click="changePage($event,index)"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../js/lib/lang.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="js/lib/DateUtil.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/powerMatrix.js"></script>
+
+</body>
+</html>

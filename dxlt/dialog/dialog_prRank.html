@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>电站效率（PR）</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/plugin/jquery.mCustomScrollbar.css"/>
+</head>
+<body>
+<div class="box_show clearfix" id="getPr">
+    <div class="show_main clearfix">
+        <div class="showm_content clearfix">
+            <div class="showm_top clearfix">
+                <div class="showm_top_left fl clearfix">
+                    <ul>
+                        <li class="on" id="dxxs_li"><span class="dialogTile">电站效率（PR）</span></li>
+                    </ul>
+                </div>
+                <div class="time_menunav_my clearfix">
+                    <ul>
+                        <li class="on"><a dateTabType="2" @click="showEqHourData($event)" href="javascript:;">月</a></li>
+                        <!-- <li><a dateTabType="3" @click="showEqHourData($event)" href="javascript:;">年</a></li> -->
+                        <a class="changeDataView" id="changeDataView" @click="toggleShow"
+                           href="javascript:;">
+                            <span class="cgDataview">表格</span>
+                            <span class="cgDataview" style="display: none">图形</span>
+                        </a>
+                    </ul>
+                </div>
+                <div class="showm_top_right fr clearfix">
+                    <a href="javascript:;" class="close fr" @click="closeWindow">关闭</a>
+                </div>
+            </div>
+            <div class="showm_bottom clearfix">
+                <div class="time_slide_box clearfix">
+                    <a href="javascript:;" class="left_min_btn fl" id="left_min_btn" @click="arrowChangeDate"></a>
+
+                    <div class="time_slide_input fl"><input id="dateInput" type="text" readonly="readonly"/></div>
+                    <a href="javascript:;" class="right_min_btn fr" id="right_min_btn" @click="arrowChangeDate"></a>
+                </div>
+                <a href="javascript:;" class="left_max_btn" id="left_max_btn"></a>
+                <a href="javascript:;" class="right_max_btn" id="right_max_btn"></a>
+
+                <div align="center" style="height: 100%;width: 100%;background-color: transparent; position: absolute"
+                     class="loadingDiv">
+                    <img src="images/loading.gif"/>
+                </div>
+                <div id="dxxsAll" class="plan_dxxsAll"></div>
+                <div class="plan_dxxsAll_table clearfix">
+                    <div class="showm_table_header clearfix tableView width820">
+                        <ul>
+                            <li>电站</li>
+                            <li onclick="showSortData(0)" style="cursor: pointer;">等效小时</li>
+                            <li onclick="showSortData(1)" style="cursor: pointer;">PR</li>
+                        </ul>
+                    </div>
+                    <div class="showm_table clearfix width820">
+                        <table>
+                            <tbody id="tbody_id"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="../js/lib/lang.js"></script>
+<script type="text/javascript" src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script type="text/javascript" src="../js/plugin/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="js/lib/DateUtil.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/powerPr.js"></script>
+</body>
+</html>

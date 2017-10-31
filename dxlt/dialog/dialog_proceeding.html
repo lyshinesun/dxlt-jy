@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>在建项目进度排名</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_main.css"/>
+</head>
+<body>
+<div class="box_show clearfix" id="powerProceeding">
+    <div class="show_main clearfix">
+        <div class="showm_content clearfix">
+            <div class="showm_top clearfix">
+                <div class="showm_top_left fl clearfix">
+                    <ul>
+                        <li class="on" id="dxxs_li"><span class="dialogTile">在建项目进度排名</span></li>
+                    </ul>
+                </div>
+                <div class="time_menunav_my clearfix">
+                    <ul>
+                    </ul>
+                </div>
+                <div class="showm_top_right fr clearfix">
+                    <a href="javascript:;" class="close fr" @click="closeWindow">关闭</a>
+                </div>
+            </div>
+            <div class="showm_bottom clearfix">
+                <!--<div class="time_slide_box clearfix">-->
+                    <!--<div class="time_slide_input fl"><input id="dateInput" type="hidden" readonly="readonly"/></div>-->
+                <!--</div>-->
+                <a href="javascript:;" class="left_max_btn" id="left_max_btn"></a>
+                <a href="javascript:;" class="right_max_btn" id="right_max_btn"></a>
+                <div align="center" class="loadingDiv">
+                    <img src="images/loading.gif"/>
+                </div>
+                <div id="dxxsAll" class="plan_dxxsAll"></div>
+            </div>
+            <div class="nav_hd clearfix">
+                <ul id="pagenation">
+                    <li v-for="(item,index) in items" v-if="item.active" class="on" @click="changePage($event,index)" ></li>
+                    <li v-else @click="changePage($event,index)"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="../js/lib/lang.js"></script>
+<script type="text/javascript" src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script type="text/javascript" src="js/lib/DateUtil.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="js/proceeding.js"></script>
+
+</body>
+</html>

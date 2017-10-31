@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>发电量排名</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/plugin/jquery.mCustomScrollbar.css"/>
+</head>
+<body>
+<div class="box_show clearfix" id="powerTrend">
+    <div class="show_main clearfix">
+        <div class="showm_content clearfix">
+            <div class="showm_top clearfix">
+                <div class="showm_top_left fl clearfix">
+                    <ul @click="power_hourTab($event)">
+                        <li class="on" id="fdl_li"><a href="javascript:;" data-powerType="power">发电量排名</a></li>
+                        <li id="dxxs_li"><a href="javascript:;" data-powerType="hour">等效小时排名</a></li>
+                        <li id="report_li"><a href="javascript:;" data-powerType="report">发电量报表</a></li>
+                        <li id="psName"><a id="psNameA"></a></li>
+                    </ul>
+                </div>
+                <div class="time_menunav clearfix">
+                    <ul @click="showEqHourData($event)">
+                        <li class="on"><a dateTabType="1" href="javascript:;">日</a></li>
+                        <li><a dateTabType="2" href="javascript:;">月</a></li>
+                        <li><a dateTabType="3" href="javascript:;">年</a></li>
+                    </ul>
+                </div>
+                <div class="showm_top_right fr clearfix">
+                    <a href="javascript:;" class="close fr" @click="closeWindow">关闭</a>
+                </div>
+            </div>
+            <div class="showm_bottom clearfix">
+                <div class="time_slide_box clearfix">
+                    <a href="javascript:;" class="left_min_btn fl" id="left_min_btn" @click="arrowChangeDate"></a>
+
+                    <div class="time_slide_input fl"><input id="dateInput" type="text" readonly="readonly"/></div>
+                    <a href="javascript:;" class="right_min_btn fr" id="right_min_btn" @click="arrowChangeDate"></a>
+                </div>
+                <a href="javascript:;" class="max_btn left_max_btn" id="left_max_btn"></a>
+                <a href="javascript:;" class="max_btn right_max_btn" id="right_max_btn"></a>
+
+                <div align="center" class="loadingDiv">
+                    <img src="images/loading.gif"/>
+                </div>
+                <div id="dxxsAll" style="display: none" class="plan_dxxsAll"></div>
+                <div id="fdlAllChart" class="plan_dxxsAll"></div>
+                <div id="genTrends" style="display: none" class="plan_dxxsAll"></div>
+                <div class="report_wrap">
+                    <div class="showm_table_rep_header">
+                        <ul class="clearfix">
+                            <li style="width: 20%;">项目</li>
+                            <li style="width: 20%;">运维容量（MW）</li>
+                            <li style="width: 19%;">月日均发电小时数（h）</li>
+                            <li style="width: 22%;">年累计发电量（万kWh）</li>
+                            <li style="width: 19%;">总累计发电量（万kWh）</li>
+                        </ul>
+                    </div>
+                    <!--<div class="showm_table_rep">-->
+                        <!--<table>-->
+                            <!--<tbody id="tbody_report"></tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/template" id="powerReport_tpl">
+    <% for(var i=0;i< reportArr.length; i++){ %>
+    <tr>
+        <td style="width: 20%;"><%=reportArr[i].fd_station_name%></td>
+        <td style="width: 20%;"><%=reportArr[i].fd_station_capacity%></td>
+        <td style="width: 19%;"><%=reportArr[i].equivalenthour%></td>
+        <td style="width: 22%;"><%=reportArr[i].yearpower%></td>
+        <td style="width: 19%;"><%=reportArr[i].fd_power_curr%></td>
+    </tr>
+    <% } %>
+</script>
+
+
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="../js/lib/lang.js"></script>
+<script type="text/javascript" src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script type="text/javascript" src="../js/plugin/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="js/lib/DateUtil.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/powerTrend.js"></script>
+
+</body>
+</html>

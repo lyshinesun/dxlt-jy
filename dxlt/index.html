@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>东旭蓝天光伏电站智能运维管理平台</title>
+    <link rel="stylesheet" href="style/reset.css"/>
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/94892/19518/5836a656f629db1688e4b872.css' rel='stylesheet'
+          type='text/css'/>
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/94892/32780/582e8c7ff629d810c4e70dcd.css' rel='stylesheet'
+          type='text/css'/>
+    <link rel="stylesheet" href="css/plugin/select/select2.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script language="javascript">
+        var ctx = '';
+        var bathPath = '';
+    </script>
+</head>
+<body>
+
+<div class="Monitor_main" id="dx_tot">
+
+    <input type="hidden" id="currentPowerValue" value="" v-model="fd_all_power_day">
+    <input type="hidden" id="currentPowerValue_virgin" value="">
+    <input type="hidden" id="user_id" value="8643"/>
+    <input type="hidden" id="org_id" value="3040"/>
+
+    <div id="grayLayer">
+        <div id="showPsInfo" class="maps_show">
+            <div class="maps_showmain">
+                <div class="show_top clearfix">
+                    <!--v-text="fd_station_name"-->
+                    <div class="show_top_title fl" id="powerInfoName" >内蒙赤峰I期20MW</div>
+                    <a href="javascript:;" class="fl close" @click="closeLayer">关闭</a>
+                </div>
+                <div class="show_c1 clearfix">
+                    <div class="show_c1_list fl">
+                        <div class="show_c1_con">
+                            <ul>
+                                <li>
+                                    <span class="fl">地理位置</span>
+                                    <div  class="fl" style="display: inline-block;">
+                                        <!--v-text="fd_city"-->
+                                        <b id="powerInfoLocation" class="stationLocation" >内蒙古赤峰市</b>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span  class="fl">电站类型</span>
+                                    <b  class="fl" id="powerInfoType">地面电站</b>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="show_c1_list fl" style="border-right:none;">
+                        <div class="show_c1_con">
+                            <ul>
+                                <li>
+                                    <span >预计并网时间</span>
+                                    <b id="expectInstallDate">--</b>
+                                </li>
+                                <li>
+                                    <span >装机功率</span>
+                                    <b id="powerInfoNormalCapacity"></b>
+                                    <span id="powerInfoNormalCapacityUnit">20MWp</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="show_c2 clearfix">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="fl showc2_left clearfix">
+                                <div class="showc2_left_ico1 fl"></div>
+                                <div class="showc2_left_text fl"><span>日发电量</span></div>
+                            </div>
+                            <div class="fl showc2_right clearfix">
+                                <b id="powerInfoDayEnergy">--</b>
+                                <span id="powerInfoDayEnergyUnit"></span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl showc2_left clearfix">
+                                <div class="showc2_left_ico2 fl"></div>
+                                <div class="showc2_left_text fl"><span>日辐射量</span></div>
+                            </div>
+                            <div class="fl showc2_right clearfix">
+                                <b id="powerInfoRadiation">--</b>
+                                <span id="powerInfoRadiationUnit">Wh/㎡</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl showc2_left clearfix">
+                                <div class="showc2_left_ico3 fl"></div>
+                                <div class="showc2_left_text fl"><span>环境温度</span></div>
+                            </div>
+                            <div class="fl showc2_right clearfix">
+                                <b id="powerInfoTemperature">--</b>
+                                <span>度</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl showc2_left clearfix">
+                                <div class="showc2_left_ico4 fl"></div>
+                                <div class="showc2_left_text fl"><span>风速</span></div>
+                            </div>
+                            <div class="fl showc2_right clearfix">
+                                <b id="powerInfoWindLevel">--</b>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="fl showc2_left clearfix">
+                                <div class="showc2_left_ico5 fl"></div>
+                                <div class="showc2_left_text fl"><span>风向</span></div>
+                            </div>
+                            <div class="fl showc2_right clearfix">
+                                <b id="powerInfoWindDirection">--</b>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="show_c3 clearfix">
+                    <div class="show_c3_top clearfix">
+                        <div class="show_c3_top_title fl">电站介绍</div>
+
+                        <a href="javascript:;" class="show_c3_top_link fr" @click="psDetailInfo">电站详细信息</a>
+                    </div>
+                    <div class="show_c3_con clearfix">
+                        <img src="images/sungrowsamsung.png" class="fl" id="powerInfoPic"/>
+                        <p id="powerInfoContent" v-text="fd_station_desc"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--主页头部-->
+    <div class="Monitor_top clearfix">
+        <div class="Monitor_top_user_logo fl">
+            <a href="http://192.168.2.214:8011/dxlt-yg/">
+                <img id="pageLogImg" class="dxlt_logo_img" src="images/dx_logo.png"/>
+            </a>
+        </div>
+        <div class="Monitor_top_title css73aa30a52172ac" id="pageTitle">东旭蓝天光伏电站智能运维管理平台</div>
+        <div class="Monitor_top_copy_logo fr">
+            <!--<a href="dx_powerStore/index.html" target="_blank"><img src="images/dx_powerStore.png"/></a>-->
+            <a href="javascript:;"><img src="images/dx_logo2.png"/></a>
+        </div>
+    </div>
+
+    <div class="Monitor_con clearfix">
+        <!--主页内容左侧-->
+        <div class="Monitor_left fl">
+            <div class="Monitor_left_c1 clearfix" data-clicktip="Monitor_left_c1_highLt" name="portal" @click="showDialogIframe('dialog/dialog_allPower.html',$event)">
+                <div class="Monitor_left_c1_on"></div>
+                <div class="Mc1_left fl">
+                    <div class="Mc1_left_top">
+                        <div class="Mc1_left_t1">今日发电</div>
+                        <div class="Mc1_left_t2" id="currentPower" v-text="fd_all_power_day"></div>
+                        <div class="Mc1_left_t3" id="currentPowerUnit" v-text="fd_all_power_day_unit"></div>
+                    </div>
+                    <div class="Mc1_left_bottom">
+                        <div class="Mc1_left_t1">当前功率
+                            <div id="messages"></div>
+                        </div>
+                        <div class="Mc1_left_t2" id="currentGL" v-text="fd_all_pw"></div>
+                        <div class="Mc1_left_t3" id="currentGLUnit" v-text="fd_all_pw_unit"></div>
+                    </div>
+                </div>
+                <div class="Mc1_right fl module" id="power_lj" >
+                    <div class="Mc1_right_t1">累计总发电（<span id="total_gen_value" v-text="fd_all_power_unit"></span>）</div>
+                    <div class="Mc1_right_t2" id="year_gen_value" v-text="fd_all_power"></div>
+                    <div class="Mc1_right_t3">集团当年累计发电：<span id="year_gen_unit" v-text="fd_all_power_year"></span><span
+                            id="total_gen_unit" v-text="fd_all_power_year_unit"></span></div>
+                </div>
+            </div>
+            <div class="Monitor_left_c2" data-clicktip="Monitor_left_c2_highLt" name="portal" @click="showDialogIframe('dialog/dialog_prRank.html',$event)">
+                <div class="Monitor_left_c2_on"></div>
+                <div class="Mc2_title">性能排名<span style="font-size: 14px">( 当月 )</span></div>
+                <div class="Mc5_nav fr clearfix" @click.stop="PR_click($event)">
+                    <ul>
+                        <li data-sortType="0" class="capacity_btn "><a href="javascript:;">前五名</a></li>
+                        <li data-sortType="1" class="capacity_btn on"><a href="javascript:;">后五名</a></li>
+                    </ul>
+                </div>
+                <div class="Mc5_con module" id="capacity"></div>
+            </div>
+            <div class="Monitor_left_c3" data-clicktip="Monitor_left_c3_highLt" name="portal" @click="showDialogIframe('dialog/dialog_powerPlan.html',$event)" >
+                <div class="Monitor_left_c3_on"></div>
+                <div class="Mc2_title">当年发电计划</div>
+                <div class="Mc6_con module" id="plan"></div>
+                <div class="Mc6_bottom">
+                    <div><img src="images/icon/ico5.png"/></div>
+                    <div class="Mc6_bottom_t1">年完成率</div>
+                    <div class="Mc6_bottom_t2" id="yearCompleteRate" v-text="fd_scheduledata"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Monitor_center fl">
+            <div class="Monitor_center_header clearfix" id="returnClick">
+                <a href="javascript:;" class="M_main_goup fl" @click="mapBack">返回</a>
+
+                <div class="Monitor_header_right clearfix fl">
+                    <div class="M_search_sel fl">
+                        <select id="psSearchName" class="M_search_ipt" onchange="searchPS(this.value)"></select>
+                    </div>
+                    <div class="Monitor_header_tag fl clearfix">
+                        <div class="Monitor_header_tag_title fl">电站状态：</div>
+                        <div class="Monitor_header_tag_list fl clearfix" @click="powerStatus($event)">
+                            <ul>
+                                <li class="clearfix" id="mtag1" data-powerStatus="complete">
+                                    <div class="Mtag_title">并网</div>
+                                    <div class="Mtag_green"></div>
+                                </li>
+                                <li class="clearfix" id="mtag2" data-powerStatus="building">
+                                    <div class="Mtag_title">在建</div>
+                                    <div class="Mtag_yellow"></div>
+                                </li>
+                                <li class="clearfix" id="mtag3" data-powerStatus="scheme">
+                                    <div class="Mtag_title">未建</div>
+                                    <div class="Mtag_blue"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Monitor_center_con" id="img_china"></div>
+        </div>
+
+        <!--主页地图-->
+        <div class="fl main_earth" id="main"></div>
+
+        <!--主页内容右侧-->
+        <div class="Monitor_right fr">
+            <div class="Monitor_right_c1 clearfix">
+                <div class="Mc4_bg fr" name="portal" data-clicktip="Mc4_bg_highLt" @click="showDialogIframe('dialog/dialog_powerTrend.html',$event)">
+                    <div class="Mc4_bg_on"></div>
+                    <div class="Mc4_top clearfix">
+                        <div class="Mc4_title fl" id="powerTrendTitle">当月发电趋势</div>
+                        <div class="Mc4_nav fr" @click.stop="showGenTrends($event)">
+                            <ul>
+                                <li data-dateType="0" class="trends_btn"><a href="javascript:;">日</a></li>
+                                <li data-dateType="2" class="trends_btn on"><a href="javascript:;">月</a></li>
+                                <li data-dateType="3" class="trends_btn"><a href="javascript:;">年</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="Mc4_con" id="gen_trend">
+                        <div align="center" style="height: 100%;width: 100%;background-color: transparent; position: absolute; z-index: 9999"
+                             class="loadingDiv">
+                            <img style='left: 45%; top: 45%; position: absolute' src="images/loading.gif"/>
+                        </div>
+                        <div class="Mc4_con_title" id="zfdl" style="display:none"></div>
+                        <div id="power" class="module"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="Monitor_right_c2 clearfix">
+                <div class="Mc5_bg fr" name="portal" data-clicktip="Mc5_bg_highLt" @click="showDialogIframe('dialog/dialog_save.html',$event)">
+                    <div class="Mc5_bg_on"></div>
+                    <div class="Mc5_top clearfix">
+                        <div class="Mc5_title fl">节能减排</div>
+                    </div>
+                    <div class="Mc2_con module" id="dayChart">
+                        <ul>
+                            <li class="Mc2_con_yellow clearfix">
+                                <div class="Mc2_ico1 fl"></div>
+                                <div class="Mc2_list fl clearfix">
+                                    <div class="Mc2_list_left fl">二氧化碳</div>
+                                    <div class="Mc2_list_right fl" id="co2" v-text="fd_co2_reduce"></div>
+                                </div>
+                            </li>
+                            <li class="Mc2_con_blue clearfix">
+                                <div class="Mc2_ico2 fl"></div>
+                                <div class="Mc2_list fl clearfix">
+                                    <div class="Mc2_list_left fl">标准煤</div>
+                                    <div class="Mc2_list_right fl" id="standard_coal" v-text="fd_coal_reduce"></div>
+
+                                </div>
+                            </li>
+                            <li class="Mc2_con_green clearfix">
+                                <div class="Mc2_ico3 fl"></div>
+                                <div class="Mc2_list fl clearfix">
+                                    <div class="Mc2_list_left fl">等效植树</div>
+                                    <div class="Mc2_list_right fl" id="dxzs" v-text="fd_tree_reduce"></div>
+                                </div>
+                            </li>
+                            <li class="Mc2_con_red clearfix">
+                                <div class="Mc2_ico4 fl"></div>
+                                <div class="Mc2_list fl clearfix">
+                                    <div class="Mc2_list_left fl">二氧化硫</div>
+                                    <div class="Mc2_list_right fl" id="so2" v-text="fd_so2_reduce"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="Monitor_right_c3 clearfix" name="portal" data-clicktip="Monitor_right_c3_highLt" @click="showDialogIframe('dialog/dialog_building.html',$event)">
+                <div class="Mc6_bg_on"></div>
+                <div class="Mc6_top clearfix">
+                    <div class="Mc5_title fl">电站建设</div>
+                </div>
+
+                <div class="Mc3_con module clearfix" id="ps_build">
+                    <div class="clearfix Mc3_con_right fl">
+                        <ul>
+                            <li>
+                                <div class="Mc3_con_right_title">并网</div>
+                                <div class="clearfix">
+                                    <div class="fl box_green"></div>
+                                    <div class="Mc3_con_right_text fl">
+                                        <span id="mc3_exist_capacity" v-text="fd_intercon_cap_finish"></span>&nbsp;&nbsp;<span
+                                            id="exist_ps_count" v-text="fd_station_count_finish"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="Mc3_con_right_title">在建</div>
+                                <div class="clearfix">
+                                    <div class="fl box_yellow"></div>
+                                    <div class="Mc3_con_right_text fl"><span id="mc3_just_capacity" v-text="fd_intercon_cap_on"></span>&nbsp;&nbsp;<span
+                                            id="just_ps_count" v-text="fd_station_count_on"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="Mc3_con_right_title">未建</div>
+                                <div class="clearfix">
+                                    <div class="fl box_blue"></div>
+                                    <div class="Mc3_con_right_text fl"><span id="no_capacity" v-text="fd_intercon_cap_undo"></span>&nbsp;&nbsp;<span
+                                            id="no_ps_count" v-text="fd_station_count_undo"></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="Mc3_con_left fl" style="position: relative">
+                        <div class="beforeClickPs" style="font-family: 'Microsoft YaHei';font-size: 18px"
+                             id="powerBuildTitle">
+                            <div style="font-size: 22px;font-weight: bold" id="title_a" align="center" v-text="fd_intercon_cap"></div>
+                            <div id="title_b" align="center">GW</div>
+                        </div>
+                        <div class="Mc3_con_left fl" id="powernumChart"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="M_main_bottom">
+        <div class="M_main_bottom_con clearfix">
+            <div class="M_bottom_b1 fl" style="cursor: pointer" id="just_capacity_span" data-clicktip="M_bottom_b1_clicked" @click="showDialogIframe('dialog/dialog_proceeding.html',$event)">
+                <div class="M_bottom_b1_con">
+                    <div class="M_bottom_t1">在建容量</div>
+                    <div class="M_bottom_t2"><span id="just_capacity"></span><span id="just_capacity_unit" v-text="fd_intercon_cap_on"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="M_bottom_b2 fl">
+                <div class="M_bottom_t1">并网容量</div>
+                <div class="M_bottom_t2"><span id="exist_capacity" v-text="fd_intercon_cap_finish"></span><span id="exist_capacity_unit" ></span></div>
+            </div>
+            <div class="M_bottom_b3 fr">
+                <div class="M_bottom_b3_con">
+                    <div class="M_bottom_t1">安全运营天数</div>
+                    <div class="M_bottom_t2"><span id="safe_operation" v-text="fd_safety_daycount"></span> 天</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mask_showdiv">
+    <div class="mask_showdiv_header clearfix">
+        <div class="mask_showdiv_header_title fl">在线项目进度排名</div>
+        <a href="javascript:;" class="mask_showdiv_header_close fr">关闭</a>
+    </div>
+    <div class="mask_showdiv_con"></div>
+</div>
+
+<iframe id="equalHourFm" style="display: none; position: absolute; width: 100%;min-height:1080px; height: 1080px; overflow: hidden; border: 0px; z-index: 9999; top: 0px;" src=""></iframe>
+
+<!--背景星星-->
+<canvas id="canvas" width="1893" height="1080"></canvas>
+
+
+<script type="text/template" id="tpl">
+    <%for(var i=0;i< dataArr.length; i++){ %>
+        <% if(dataArr[i].fd_station_status == 2){ %>
+        <div id="<%=dataArr[i].fd_station_code %>" class="location" style="left:<%=dataArr[i].fd_left%>px;top:<%=dataArr[i].fd_top%>px">
+            <em title="<%=dataArr[i].fd_station_name%>" ><%=dataArr[i].fd_station_name%></em>
+        </div>
+        <% }else if(dataArr[i].fd_station_status == 1){ %>
+        <div id="<%=dataArr[i].fd_station_code %>" class="location2" style="left:<%=dataArr[i].fd_left%>px;top:<%=dataArr[i].fd_top%>px">
+            <em title="<%=dataArr[i].fd_station_name%>" ><%=dataArr[i].fd_station_name%></em>
+        </div>
+        <% }else if(dataArr[i].fd_station_status == 0){ %>
+        <div id="<%=dataArr[i].fd_station_code %>" class="location3" style="left:<%=dataArr[i].fd_left%>px;top:<%=dataArr[i].fd_top%>px">
+            <em title="<%=dataArr[i].fd_station_name%>" ><%=dataArr[i].fd_station_name%></em>
+        </div>
+        <% } %>
+    <% } %>
+
+</script>
+
+<script src="js/lib/star.js"></script>
+
+<script src="js/lib/jquery-1.10.2.min.js"></script>
+<script src="js/lib/vlm.js"></script>
+<script src="js/lib/vue.js"></script>
+<script src="js/lib/ejs.js"></script>
+<script src="js/plugin/jquery-select/select2.min.js"></script>
+<script src="js/common/common.js"></script>
+<script src="js/common/esmpbase.js"></script>
+<script src="js/lib/lang.js"></script>
+<script src="js/plugin/echarts_new/echarts.min.js"></script>
+<script src="js/plugin/echart/echarts.js"></script>
+<script src="js/3d/echarts-x.js"></script>
+
+<script src="js/index.js"></script>
+</body>
+</html>

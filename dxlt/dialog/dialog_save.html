@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>节能减排</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/plugin/jquery.mCustomScrollbar.css"/>
+</head>
+<body>
+<div class="box_show clearfix" id="powerSave">
+    <div class="show_main clearfix">
+        <div class="showm_content clearfix">
+            <div class="showm_top clearfix">
+                <div class="showm_top_left fl clearfix">
+                    <ul>
+                        <li class="on" id="dxxs_li"><span class="dialogTile">节能减排</span></li>
+                    </ul>
+                </div>
+                <div class="showm_top_right fr clearfix">
+                    <a href="javascript:;" class="close fr" @click="closeWindow">关闭</a>
+                </div>
+            </div>
+            <div class="showm_bottom clearfix">
+                <div align="center" class="loadingDiv">
+                    <img src="images/loading.gif"/>
+                </div>
+                <div class="showm_table_header clearfix">
+                    <ul>
+                        <li>电站名称</li>
+                        <li>二氧化碳</li>
+                        <li>标准煤</li>
+                        <li>等效植树</li>
+                        <li>二氧化硫</li>
+                    </ul>
+                </div>
+                <div class="showm_table clearfix">
+                    <table>
+                        <tbody id="tbody_id"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="powerSaveTpl">
+    <% for(var i=0;i< newArr.length; i++){ %>
+    <tr>
+        <td><%=newArr[i].fd_station_name%></td>
+        <td><%=newArr[i].fd_all_co2_reduce%><%=newArr[i].fd_all_co2_reduce_unit%></td>
+        <td><%=newArr[i].fd_all_coal_reduce%><%=newArr[i].fd_all_coal_reduce_unit%></td>
+        <td class="tab_title4"><%=newArr[i].fd_all_tree_reduce%><%=newArr[i].fd_all_tree_reduce_unit%></td>
+        <td><%=newArr[i].fd_all_so2_reduce%><%=newArr[i].fd_all_so2_reduce_unit%></td>
+    </tr>
+    <% } %>
+</script>
+
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="../js/plugin/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="js/powerSave.js"></script>
+
+</body>
+</html>

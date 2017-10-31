@@ -1,0 +1,161 @@
+﻿<html>
+<head>
+    <title>电站详情</title>
+    <link rel="stylesheet" type="text/css" href="../style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dialog_detail.css"/>
+</head>
+<body>
+<div class="show_main" id="powerDetail">
+    <div class="showm_top clearfix">
+        <div class="showm_top_left fl clearfix">
+            <ul>
+                <li class="on" id="dxxs_li"><span class="psName" v-text="fd_station_name"></span></li>
+            </ul>
+        </div>
+        <div class="showm_top_right fr clearfix">
+            <a href="javascript:;" class="close closeBtn fr" @click="closeWindow">关闭</a>
+        </div>
+    </div>
+    <div class="box_con">
+        <div class="levelDiv clearfix">
+            <div class="Mc2_con fl module" id="dayChart">
+                <ul>
+                    <li class="Mc2_con_yellow clearfix">
+                        <div class="Mc2_ico1 fl"></div>
+                        <div class="Mc2_list fl clearfix">
+                            <div class="Mc2_list_left fl">当前功率</div>
+                            <div class="Mc2_list_right fl" id="curPower_value" v-text="fd_all_pw"></div>
+                        </div>
+                    </li>
+                    <li class="Mc2_con_blue clearfix">
+                        <div class="Mc2_ico2 fl"></div>
+                        <div class="Mc2_list fl clearfix">
+                            <div class="Mc2_list_left fl">今日发电</div>
+                            <div class="Mc2_list_right fl" id="todayGeneration_value" v-text="fd_all_power_day"></div>
+                        </div>
+                    </li>
+                    <li class="Mc2_con_green clearfix">
+                        <div class="Mc2_ico3 fl"></div>
+                        <div class="Mc2_list fl clearfix">
+                            <div class="Mc2_list_left fl">累计发电</div>
+                            <div class="Mc2_list_right fl" id="totalGen_value" v-text="fd_all_power"></div>
+                        </div>
+                    </li>
+                    <li class="Mc2_con_red clearfix">
+                        <div class="Mc2_ico4 fl"></div>
+                        <div class="Mc2_list fl clearfix">
+                            <div class="Mc2_list_left fl">二氧化碳</div>
+                            <div class="Mc2_list_right fl" id="reduceCo2_value" v-text="fd_all_co2_reduce"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl topbox_right clearfix">
+                <div class="N_box_left fl">
+                    <div class="N_box_list1">
+                        <div class="N_box_list_top"><img src="images/weather_pic_1.png" /></div>
+                        <div class="N_box_list_center">环境温度</div>
+                        <div class="N_box_list_bottom"><span id="environmentCom" class="environmentCom" v-text="fdboardtemperature"></span></div>
+                    </div>
+                    <div class="N_box_list2">
+                        <div class="N_box_list_top"><img id="todayweather" src="images/weather_pic_1.png" /></div>
+                        <div class="N_box_list_center">电池板</div>
+                        <div class="N_box_list_bottom"><span id="batteryPlateCom" v-text="fdboardtemperature"></span></div>
+                    </div>
+                </div>
+                <div class="N_box_center fl">
+                    <div class="N_box_center_top"><span id="days"></span>  <span id="month"></span>月<span id="date"></span>日 （实时温度：<span class="environmentCom" v-text="fdboardtemperature"></span>）</div>
+                    <div class="N_box_center_bottom clearfix">
+                        <div class="N_box_we_left fl">
+                            <div class="N_box_we_left_head clearfix">
+                                <div class="N_box_we_left_head_icon fl"><img id="todayImg" src="images/N_img1.png" /></div>
+                                <div class="N_box_we_left_head_text fl">
+                                    <div id="weatherName" v-text="wertherName"></div>
+                                    <div style="padding-bottom:0px;" id="todayWind" v-text="windToday"></div>
+                                </div>
+                            </div>
+                            <div class="N_box_we_left_foot"><span id="lowc" v-text="temprature_low">-</span>~<span id="highc" v-text="temprature_high">-</span>℃</div>
+                        </div>
+                        <div class="N_box_we_right fl">
+                            <ul id="weatherUl"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec_list fl">
+                    <div class="innerPieEchart" id="totalPr"></div>
+                    <div class="innerPieChartDiv" id="powerBuildTitle1">
+                        <div  class="prInnerDiv" align="center"><span id="title_a1" v-text="fd_pr"></span>%</div>
+                        <div id="title_b1" align="center">PR(当年)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="levelDiv clearfix" style="padding-top: 28px;">
+            <div class="siteMore_con_ri_tog innerDiv45 fl">
+                <div class="bd fl" id="bigPicture_bdContent">
+                    <div class="tempWrap" style="overflow:hidden; position:relative; height:261px">
+                        <ul class="clearfix" id="bigPicture">
+                        </ul>
+                    </div>
+                </div>
+                <div class="hd fr" id="smallPicture_hdContent">
+                    <a class="siteMore_con_ri_togprev"></a>
+                    <ul class="clearfix" id="smPicture"></ul>
+                    <a class="siteMore_con_ri_tognext"></a></div>
+            </div>
+            <div class="innerDiv55 fl">
+                <p id="psRoughInfo" class="station_desc" v-text="fd_station_desc"></p>
+            </div>
+        </div>
+        <div class="levelDiv clearfix" style="padding-top: 28px;">
+            <div class="innerDiv50 fl">
+                <h3>实时功率</h3>
+                <div id="realTimeEchart"></div>
+            </div>
+            <div class="innerDiv50 fl" @click="showPsUnit" style="cursor: pointer">
+                <h3>电站示意图</h3>
+                <div class="show_img"><img id="psDiagram" :src="fd_station_sketchpic"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/template" id="weatherTpl">
+    <% for(var i=0;i< newWeatherArr.length; i++){ %>
+    <% if(i == newWeatherArr.length-1) { %>
+        <li style="width:115px;">
+            <div class="N_box_we_right_t1"><span class="curMonthAdd3"><%=newWeatherArr[i].monthNum%></span>月<span class="curDateAdd3"><%=newWeatherArr[i].dayNum%></span>日</div>
+            <div class="N_box_we_right_icon"><img src="images/weather/<%=newWeatherArr[i].imgType%>.png" /></div>
+            <div class="N_box_we_right_t2"><span><%=newWeatherArr[i].high_future%></span>~<span><%=newWeatherArr[i].low_future%></span> ℃</div>
+            <div class="N_box_we_right_t3"><span><%=newWeatherArr[i].weather%></span></div>
+            <div class="N_box_we_right_t4"><span></span>&nbsp;<span><%=newWeatherArr[i].wind%></span></div>
+        </li>
+    <% }else{ %>
+        <li>
+            <div class="N_box_we_right_t1"><span class="curMonthAdd3"><%=newWeatherArr[i].monthNum%></span>月<span class="curDateAdd3"><%=newWeatherArr[i].dayNum%></span>日</div>
+            <div class="N_box_we_right_icon"><img src="images/weather/<%=newWeatherArr[i].imgType%>.png" /></div>
+            <div class="N_box_we_right_t2"><span><%=newWeatherArr[i].high_future%></span>~<span><%=newWeatherArr[i].low_future%></span> ℃</div>
+            <div class="N_box_we_right_t3"><span><%=newWeatherArr[i].weather%></span></div>
+            <div class="N_box_we_right_t4"><span></span>&nbsp;<span><%=newWeatherArr[i].wind%></span></div>
+        </li>
+        <% } %>
+    <% } %>
+</script>
+
+
+<script type="text/javascript" src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../js/lib/lang.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/esmpbase.js"></script>
+<script type="text/javascript" src="../js/plugin/echarts_new/echarts.min.js"></script>
+<script type="text/javascript" src="js/lib/DateUtil.js"></script>
+<script type="text/javascript" src="js/lib/TouchSlide.js"></script>
+<script type="text/javascript" src="js/plugin/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="js/powerDetail.js"></script>
+
+</body>
+</html>
