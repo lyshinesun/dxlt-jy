@@ -7,7 +7,6 @@ var dialog = {
     //ps_scheme: "",
     daysArr: [LANG["common_date_day7"], LANG["common_date_day1"], LANG["common_date_day2"], LANG["common_date_day3"], LANG["common_date_day4"], LANG["common_date_day5"], LANG["common_date_day6"]]
 };
-
 function dealTimeNum(val) {
     var rest = "--";
     if ($.isNumeric(val)) {
@@ -54,6 +53,24 @@ new Vue({
 
     },
     methods: {
+        getPsPr: function () {
+            var _this = this
+            var dates = new Date();
+            var sortDate = dates.getFullYear() + '-' + (dates.getMonth() + 1) + '-' + dates.getDate()
+            $.ajax({
+                url:vlm.serverAddr+'stationInfo/getPerSort',
+                type:'get',
+                dataType:'json',
+                data:{
+                    'date': sortDate,
+                    'type': 6,
+                    'psid': dialog.ps_id 
+                },
+                success:function(res) {
+                    _this.fd_pr = res.list[0].pr
+                }
+            })
+        },
         getPsDetailInfo1: function () {
             var _this = this,
                 Parameters = {
@@ -72,7 +89,7 @@ new Vue({
                     _this.fd_all_power = result.fd_all_power + result.fd_all_power_unit; //累计发电
                     _this.fd_all_co2_reduce = result.fd_all_co2_reduce + result.fd_all_co2_reduce_unit; //二氧化碳
                     _this.fd_station_desc = result.fd_station_desc; //电站介绍
-                    _this.fd_pr = result.pr; //pr
+                    /*_this.fd_pr = result.pr;*/ //pr
                     _this.fdtemperature = result.fdtemperature.toFixed(1);
                     _this.loadWeather(result.fd_city); //天气调用
                     if (result.fd_station_sketchpic) {
@@ -233,7 +250,6 @@ new Vue({
             };
 
             vlm.loadJson("", JSON.stringify(Parameters), function (res) {
-                console.log(res);
                 if (res.success) {
                     var result = res.data,hourMaxNum='';
                     if (result.length) {
@@ -497,6 +513,7 @@ new Vue({
 
     },
     mounted: function () {
+        this.getPsPr()
         this.getPsDetailInfo1();  //整体信息
         this.loadDataForRealTimePower(); //实时功率
     }

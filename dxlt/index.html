@@ -175,11 +175,11 @@
             </div>
             <div class="Monitor_left_c2" data-clicktip="Monitor_left_c2_highLt" name="portal" @click="showDialogIframe('dialog/dialog_prRank.html',$event)">
                 <div class="Monitor_left_c2_on"></div>
-                <div class="Mc2_title">性能排名<span style="font-size: 14px">( 当月 )</span></div>
+                <div class="Mc2_title">性能排名<span style="font-size: 14px">( 当天 )</span></div>
                 <div class="Mc5_nav fr clearfix" @click.stop="PR_click($event)">
                     <ul>
-                        <li data-sortType="0" class="capacity_btn "><a href="javascript:;">前五名</a></li>
-                        <li data-sortType="1" class="capacity_btn on"><a href="javascript:;">后五名</a></li>
+                        <li data-sortType="4" class="capacity_btn on"><a href="javascript:;">前五名</a></li>
+                        <li data-sortType="5" class="capacity_btn "><a href="javascript:;">后五名</a></li>
                     </ul>
                 </div>
                 <div class="Mc5_con module" id="capacity"></div>

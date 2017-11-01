@@ -688,8 +688,8 @@ html, body {
     background: url(../images/navbg2.png) no-repeat;
     color: white;
     text-decoration: none;
-    /*margin-left: 110px;*/  /*当月、年排名都显示时打开此样式*/
-    margin-left: 44px; /*当只显示月排名的时候打开此样式*/
+    margin-left: 110px;  /*当月、年排名都显示时打开此样式*/
+    /*margin-left: 44px;*/ /*当只显示月排名的时候打开此样式*/
     width: 74px;
     height: 24px;
     line-height: 24px;

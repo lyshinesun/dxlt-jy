@@ -661,10 +661,10 @@ new Vue({
             this.psObj.psIdArr.length = 0;
             var _this = this;
             if (!sortType) {
-                sortType = "1";
+                sortType = "4";
             }
             var dates = new Date();
-            var sortDate = dates.getFullYear() + '-' + (dates.getMonth() + 1)
+            var sortDate = dates.getFullYear() + '-' + (dates.getMonth() + 1) + '-' + dates.getDate()
             // console.log('sortDate' + sortDate)
             /*-------c接口----------*/
             /*var Parameters = {
