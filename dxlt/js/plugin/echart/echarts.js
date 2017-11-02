@@ -10676,7 +10676,7 @@ define('zrender/zrender', [
                 return;
             }
             event = this._zrenderEventFixed(event);
-            var delta = event.wheelDelta || -event.detail;
+            /*var delta = event.wheelDelta || -event.detail;
             var scale = delta > 0 ? 1.1 : 1 / 1.1;
             var needsRefresh = false;
             var mouseX = this._mouseX;
@@ -10702,7 +10702,7 @@ define('zrender/zrender', [
             if (needsRefresh) {
                 this.painter.refresh();
             }
-            this._dispatchAgency(this._lastHover, EVENT.MOUSEWHEEL, event);
+            this._dispatchAgency(this._lastHover, EVENT.MOUSEWHEEL, event);*/
             this._mousemoveHandler(event);
         },
         mousemove: function (event, manually) {
