@@ -35,7 +35,7 @@ new Vue({
         fd_station_desc: '', //电站介绍
 
         fd_city: '',
-        fd_pr: '--',
+        fd_pr: 0,
         fd_station_sketchpic: 'images/ps_unit.png', //电站示意图
 
         fdboardtemperature: '--',  //环境温度
@@ -67,7 +67,7 @@ new Vue({
                     'psid': dialog.ps_id 
                 },
                 success:function(res) {
-                    _this.fd_pr = res.list[0].pr
+                    _this.fd_pr = res.list[0].pr.toFixed(2)
                 }
             })
         },
