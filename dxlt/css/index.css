@@ -19,6 +19,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
+    background-size: 100%
 }
 
 #canvas {
@@ -68,7 +69,7 @@
     padding-left: 22px;
     padding-top: 48px;
     width: 109px;
-    height: 279px;
+    /*height: 279px;*/
     float: left;
 }
 
@@ -281,10 +282,10 @@
 }
 
 .Mc4_nav ul li {
-    display: block;
+    /*display: block;*/
     margin-bottom: 10px;
-    width: 92px;
-    height: 25px;
+    /*width: 92px;
+    height: 25px;*/
     line-height: 23px;
     text-align: center;
 }
@@ -301,10 +302,12 @@
 
 .Mc4_nav ul li.on a {
     background: url(../images/icon/btn_bg2.png) no-repeat;
+    background-size: 100%
 }
 
 .Mc4_nav ul li a:hover {
     background: url(../images/icon/btn_bg2.png) no-repeat;
+    background-size: 100%
 }
 
 .Mc4_con {
@@ -391,13 +394,15 @@
 }
 
 .Mc5_con {
-    width: 430px;
-    height: 215px;
-    margin-left: 9px;
+    /*width: 430px;*/
+    width: 96%;
+    /*height: 215px;*/
+    height: 68%;
+    /*margin-left: 9px;*/
 }
 
 .Monitor_con {
-    width: 1873px;
+    width: 99.8%;
     margin: 0 auto;
 }
 
@@ -476,7 +481,7 @@
 }
 
 .M_bottom_b1_clicked {
-    background: url(../images/icon/btn_bg5_hL.png) no-repeat !important;
+    background: url(../images/icon/btn_bg5_hL.png) no-repeat;
 }
 
 .M_bottom_b2 {
@@ -1006,51 +1011,51 @@
 }
 
 .Monitor_left_c1_highLt {
-    background: url(../images/mk_bg/Highlight_bg1.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg1.png) no-repeat;
 }
 
 .Monitor_left_c2_highLt {
-    background: url(../images/mk_bg/Highlight_bg2.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg2.png) no-repeat ;
 }
 
 .Monitor_left_c3_highLt {
-    background: url(../images/mk_bg/Highlight_bg3.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg3.png) no-repeat;
 }
 
 .Mc4_bg_highLt {
-    background: url(../images/mk_bg/Highlight_bg4.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg4.png) no-repeat;
 }
 
 .Mc5_bg_highLt {
-    background: url(../images/mk_bg/Highlight_bg5.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg5.png) no-repeat;
 }
 
 .Monitor_right_c3_highLt {
-    background: url(../images/mk_bg/Highlight_bg6.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg6.png) no-repeat ;
 }
 
 .Monitor_left_c1:hover {
-    background: url(../images/mk_bg/Highlight_bg1.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg1.png) no-repeat;
 }
 
 .Monitor_left_c2:hover {
-    background: url(../images/mk_bg/Highlight_bg2.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg2.png) no-repeat;
 }
 
 .Monitor_left_c3:hover {
-    background: url(../images/mk_bg/Highlight_bg3.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg3.png) no-repeat ;
 }
 
 .Mc4_bg:hover {
-    background: url(../images/mk_bg/Highlight_bg4.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg4.png) no-repeat;
 }
 
 .Mc5_bg:hover {
-    background: url(../images/mk_bg/Highlight_bg5.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg5.png) no-repeat;
 }
 
 .Monitor_right_c3:hover {
-    background: url(../images/mk_bg/Highlight_bg6.png) no-repeat !important;
+    background: url(../images/mk_bg/Highlight_bg6.png) no-repeat;
 }
 
 .animated {
@@ -1159,6 +1164,17 @@
     width: 409px;
     height: 194px
 }
+#equalHourFm {
+    display: none; 
+    position: absolute;
+    width: 100%;
+    min-height:1080px;
+    height: 1080px;
+    overflow: hidden;
+    border: 0px; 
+    z-index: 9999;
+    top: 0px;"
+}
 
 /*支持高度大于1080P分辨率适配*/
 @media only screen and (max-height: 2000px) and (min-height: 1100px) {
@@ -1176,12 +1192,12 @@
         float: left;
     }
 
-    .Mc1_left_top {
+    /*.Mc1_left_top {
         width: 109px;
         height: 118px;
         padding-top: 55px;
         text-align: center;
-    }
+    }*/
 
     .Mc1_left_bottom {
         padding-top: 45px;
@@ -1320,4 +1336,403 @@
     display: inline-block;
     cursor: pointer;
     position: absolute;
+}
+
+
+@media only screen and (max-width: 1800px) and (min-width: 1600px) {
+    
+}
+
+@media only screen and (max-width: 1600px) and (min-width: 1400px) {
+    
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 1200px) {
+   
+}
+
+/*2018 01 12 添加样式兼容14.4*/
+/*@media only screen and (max-width: 1400px) and (min-width: 1000px) {
+    .dxlt_logo_img {
+        width: 176px;
+        height: 47px;
+    }
+    .Monitor_top_user_logo {
+        width: 10px;
+        padding-left: 16px;
+        padding-top: 12px;
+    }
+    .Monitor_top_title {
+        font-size: 28px;
+        line-height: 44px;
+        margin-left: 316px;
+        width: 667px;
+    }
+    .Monitor_top_copy_logo img {
+        width: 170px;
+        height: 60px;
+    }
+    .Monitor_top_copy_logo {
+        padding-right: 15px;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+    .Monitor_con {
+        width: 1328px;
+        margin: 0 auto;
+    }
+    .M_main_bottom {
+        background: url(../images/mk_bg/bg3.png) no-repeat;
+        width: 1328px;
+        margin: 0 auto;
+        margin-top: 12px;
+        background-size: contain;
+    }
+}
+*/
+@media only screen and (max-width: 1400px) and (min-width: 1000px) {
+    .Monitor_main {
+        padding-top: 60px;
+        top: 10px;
+    }
+    .dxlt_logo_img {
+        width: 176px;
+        height: 47px;
+    }
+    .Monitor_top_user_logo {
+        width: 10px;
+        padding-left: 16px;
+        padding-top: 12px;
+    }
+    .Monitor_top_title {
+        font-size: 28px;
+        line-height: 44px;
+        margin-left: 316px;
+        width: 667px;
+    }
+    .Monitor_top_copy_logo img {
+        width: 170px;
+        height: 60px;
+    }
+    .Monitor_top_copy_logo {
+        padding-right: 15px;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+    .Monitor_con {
+        /*width: 1328px;*/
+        margin: 4px auto;
+    }
+    .Monitor_left_c1 {
+        width: 332px;
+        height: 227px;
+        background-size: contain;
+    }
+    .Monitor_left_c1_highLt {
+        width: 377px;
+        height: 227px;
+    }
+    .Monitor_left_c1:hover {
+        background-size: contain;
+    }
+
+
+    .Monitor_left_c2 {
+        height: 212px;
+        width: 296px;
+        background-size:contain;
+        margin-top: 0px
+    }
+    .Monitor_left_c2_highLt {
+        height: 212px;
+        width: 296px;
+    }
+    .Monitor_left_c2:hover {
+        background-size: contain;
+    }
+    .Mc5_con {
+        height: 76%
+    }
+
+
+    .Monitor_left_c3 {
+        height: 212px;
+        width: 353px;
+        background-size: contain;
+        margin-top: -5px;
+    }
+    .Monitor_left_c3_highLt {
+        height: 212px;
+        width: 353px;
+    }
+    .Monitor_left_c3:hover {
+        height: 212px;
+        width: 353px;
+        background-size: contain;
+    }
+    .Mc6_bottom {
+        width: 59px;
+        height: 80px;
+        position: absolute;
+        right: 0px;
+        bottom: 3px;
+        text-align: center;
+        padding-top: 4px;
+        background-size: contain;
+    }
+    .Mc6_bottom_t1 {
+        padding-top: 4px;
+        padding-bottom: 2px;
+    }
+    .Mc6_bottom_t2 {
+        font-size: 14px
+    }
+    .Mc6_con {
+        width: 308px;
+        height: 176px;
+        margin-left: 6px;
+    }
+
+
+
+    .Mc4_bg {
+        height: 229px;
+        width: 319px;
+        background-size: contain;
+        /*right: -167px;*/
+    }
+    .Mc4_bg_highLt {
+        height: 229px;
+        width: 319px;
+    }
+    .Mc4_bg:hover {
+        height: 229px;
+        width: 319px;
+        background-size: contain;
+    }
+
+
+
+
+    .Mc5_bg {
+        height: 210px;
+        width: 296px;
+        background-size: contain;
+        margin-top: 0px
+    }
+    .Mc5_bg_highLt {
+        height: 210px;
+        width: 296px;
+    }
+    .Mc5_bg:hover {
+        height: 210px;
+        width: 296px;
+        background-size: contain;
+    }
+
+    .Monitor_right_c3 {
+        height: 210px;
+        width: 352px;
+        background-size: contain;
+        margin-top: -4px
+    }
+    .Monitor_right_c3_highLt {
+        height: 210px;
+        width: 352px;
+    }
+    .Monitor_right_c3:hover {
+        height: 210px;
+        width: 352px;
+        background-size: contain;
+    }
+    .Monitor_right_c1{
+        height: 226px
+    }
+    .M_main_bottom {
+        width: 100%
+    }
+    .Mc1_left {
+        width: 96px;
+        padding-left: 0px;
+    }
+    .Mc1_left_top {
+        width: 96px;
+        height: 80px;
+        padding-top: 0px;
+    }
+    .Mc1_left_t2 {
+        font-size: 22px
+    }
+    .Mc1_left_bottom {
+        width: 96px;
+        padding-top: 0px
+    }
+    .Mc1_right {
+        padding-top: 45px;
+        padding-left: 15px;
+    }
+    .Mc1_right_t1 {
+        height: 44px;
+        line-height: 48px;
+        font-size: 16px;
+        margin-bottom: 0px  
+
+    }
+    .Mc1_right_t2 {
+        font-size: 14px;
+        height: 67px;
+        line-height: 67px;
+        font-size: 50px;
+        margin-bottom: 0px
+    }
+    .Mc1_right_t3 {
+        height: 50px;
+        line-height: 50px;
+        font-size: 12px;
+    }
+    .Mc2_title {
+        font-size: 16px;
+        padding-left: 170px;
+        padding-top: 4px;
+        padding-bottom: 12px;
+    }
+    .Mc2_con {
+        padding-left: 15px;
+        padding-top: 10px; 
+    }
+    .Mc2_con ul li {
+        height: 32px;
+        line-height: 32px;
+        width: 266px;
+    }
+    .Mc2_ico1, .Mc2_ico2, .Mc2_ico3, .Mc2_ico4{
+        width: 48px;
+        height: 32px;
+    }
+    .Mc2_list_left {
+        padding-left: 10px;
+        width: 82px;
+    }
+    .Mc5_nav ul li {
+        width: 65px;
+    }
+    .Mc5_nav ul li a {
+        width: 65px;
+        background-size: 92% 100%;
+    }
+    .Mc5_nav ul li.on a {
+        background-size: 92% 100%;
+    }
+    .Mc5_nav {
+        left: 4px;
+        top: 15px;
+    }
+    .Mc5_top {
+        padding-top: 3px;
+        padding-left: 33px;
+        padding-bottom: 0px;
+    }
+    .Mc5_title {
+        font-size: 16px;
+    }
+    .Mc4_title {
+        font-size: 16px;
+        padding-left: 116px;
+        padding-top: 48px;
+    }
+    .Mc4_nav {
+        padding-right: 8px; 
+        padding-top: 20px;
+    }
+    .Mc4_nav ul li a {
+        width: 71px;
+        background-size: 100%;
+
+    }
+    .Mc4_nav ul li {
+        margin-bottom: 0px;
+    }
+    .Mc4_con #power {
+        width: 313px;
+        height: 117px;
+    }
+    .Mc4_con {
+        width: 277px;
+        height: 126px;
+        margin-left: 0px;
+    }
+    .Mc6_top {
+         padding-top: 0px; 
+        padding-left: 85px;
+         padding-bottom: 0px; 
+         padding-right: 0px; 
+    }
+    .Mc3_con {
+        width: 304px;
+        height: 177px;
+        padding-left: 45px;
+    }
+    .Mc3_con_left {
+        height: 128px;
+        width: 128px;
+        top: 32px;
+    }
+    .Mc3_con_right {
+        padding-top: 12px;
+        width: 171px;
+    }
+    .beforeClickPs {
+        width: 128px;
+        top: 28%
+    }
+    .M_main_bottom {
+        margin-top: -26px;
+        background-size: 100%;
+    }
+    .M_main_bottom_con {
+        width: 40%
+    }
+    .M_bottom_b1 {
+        width: 156px;
+        text-align: center;
+        margin-left: 50px;
+        margin-top: 0px;
+        background-size: 100%
+    }
+    .M_bottom_b2 {
+        width: 103px;
+        margin-left: 18px;
+        background-size: 100%;
+    }
+    .M_bottom_b3 {
+        width: 147px;
+        background-size: 100%;
+        margin-right: 49px;
+    }
+    .M_bottom_b1,.M_bottom_b2,.M_bottom_b3 {
+        padding-top: 0px
+    }
+    .M_bottom_b1_clicked,.M_bottom_b1:hover {
+        width: 156px;
+        background-size: 100%
+    }
+    .M_bottom_t2 span {
+        font-size: 16px;
+    }
+    #equalHourFm {
+        min-height:822px;
+        height: 822px;
+        top: -60px;
+    }
+    .main_earth {
+        min-height: 450px
+    }
+    .Monitor_center {
+        width: 900px;
+        top: 60px;
+        z-index: 99
+    }
+    .Monitor_center_con {
+        margin-top: 0px
+    }
 }

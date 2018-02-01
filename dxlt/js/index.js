@@ -663,8 +663,9 @@ new Vue({
             if (!sortType) {
                 sortType = "4";
             }
-            var dates = new Date();
-            var sortDate = dates.getFullYear() + '-' + (dates.getMonth() + 1) + '-' + dates.getDate()
+            var curDate = new Date();
+            var preDate = new Date(curDate.getTime() - 24*60*60*1000); //获取当前日期的前一天的性能排名
+            var sortDate = preDate.getFullYear() + '-' + (preDate.getMonth() + 1) + '-' + preDate.getDate()
             // console.log('sortDate' + sortDate)
             /*-------c接口----------*/
             /*var Parameters = {
@@ -740,6 +741,7 @@ new Vue({
                 dataType:'json',
                 data:{
                     'date': sortDate,
+                    // 'date': '2017-11-27',
                     'type': sortType
                 },
                 success:function(res){

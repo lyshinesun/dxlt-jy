@@ -83,11 +83,12 @@ new Vue({
                             var sel_num = sel_date.getDate();
                             var max_num = Number(planArray[planArray.length - 1].fd_day);
                             var min_num = Number(planArray[0].fd_day);
-
                             if (planArray.length == max_num) {
                                 for (var i = 0; i < planArray.length; i++) {
-                                    planData.push(planArray[i].fd_sched_power_mon.toFixed(2)); //每个月发电计划
-                                    newActualData.push(planArray[i].datapower.toFixed(2));    //当月实际发电
+                                    if (planArray[i]) {
+                                        planData.push(planArray[i].fd_sched_power_mon.toFixed(2)); //每个月发电计划
+                                        newActualData.push(planArray[i].datapower.toFixed(2));    //当月实际发电
+                                    }
                                 }
                             } else {  //2016.12.20开始有数据
                                 for (var i = 1; i <= sel_num; i++) {
@@ -95,28 +96,36 @@ new Vue({
                                         planData.push('--'); //每个月发电计划
                                         newActualData.push('--');    //当月实际发电
                                     } else {
-                                        planData.push(planArray[i - min_num].fd_sched_power_mon.toFixed(2)); //每个月发电计划
-                                        newActualData.push(planArray[i - min_num].fd_power_day.toFixed(2));    //当月实际发电
+                                        if (planArray[i - min_num]) {
+                                            planData.push(planArray[i - min_num].fd_sched_power_mon.toFixed(2)); //每个月发电计划
+                                            newActualData.push(planArray[i - min_num].fd_power_day.toFixed(2));    //当月实际发电
+                                        }
+                                        
                                     }
-                                    console.log(planData);
                                 }
                             }
                         } else if (dialog.dateType == 3) {
-
                             if (planArray.length == 12) {
                                 for (var i = 0; i < planArray.length; i++) {
-                                    planData.push(planArray[i].fd_sched_power_mon.toFixed(2)); //每个月发电计划
-                                    newActualData.push(planArray[i].datapower.toFixed(2));    //当月实际发电
+                                    if (planArray[i]) {
+                                        planData.push(planArray[i].fd_sched_power_mon.toFixed(2)); //每个月发电计划
+                                        newActualData.push(planArray[i].datapower.toFixed(2));    //当月实际发电
+                                    }
                                 }
                             } else {
                                 var max_month = Number(planArray[planArray.length - 1].fd_month);
+                                var min_month = Number(planArray[0].fd_month);
+                                // console.log(max_month)
                                 for (var i = 1; i <= 12; i++) {
-                                    if (i < max_month) {
+                                    if (i < min_month) {
                                         planData.push('--'); //每个月发电计划
                                         newActualData.push('--');    //当月实际发电
                                     } else {
-                                        planData.push(planArray[i-max_month].fd_sched_power_mon.toFixed(2)); //每个月发电计划
-                                        newActualData.push(planArray[i-max_month].datapower.toFixed(2));    //当月实际发电
+                                        if (planArray[i-max_month]) {
+                                            planData.push(planArray[i-max_month].fd_sched_power_mon.toFixed(2)); //每个月发电计划
+                                            newActualData.push(planArray[i-max_month].datapower.toFixed(2));    //当月实际发电
+                                        }
+                                       
                                     }
                                 }
                             }
@@ -133,10 +142,13 @@ new Vue({
                             var temAddedArr = addUpArr(newActualData);
                             var temSum = addUpArr(planData);
                             var now = new Date();
-                            var month = now.getMonth() + 1;
+                            // var month = now.getMonth() + 1; 这里只取到当前月的发电完成率是不对的
+                            var month = temAddedArr.length //temAddedArr的长度才是当年统计的月数
+                            console.log(temAddedArr)
                             for (var i = 0; i < planData.length; i++) {
                                 xData.push(i + 1);
                                 if (i < month) {
+                                    console.log(i)
                                     completionRt.push(CalculatedCompletionRate(temAddedArr[i], temSum[i]));
                                 } else {
                                     completionRt.push('--');

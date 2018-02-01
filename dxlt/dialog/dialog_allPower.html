@@ -35,8 +35,8 @@
         <li>
             <div class="show_icon_list_title"><%=listArr[i].psName%></div>
             <div class="show_icon_list_bottom">
-                <div class="Sicon_1"><%=listArr[i].pAll%>万kWh</div>
-                <div class="Sicon_2"><%=listArr[i].pYear%>万kWh</div>
+                <div class="Sicon_1"><%=listArr[i].pAll.toFixed(4)%>万kWh</div>
+                <div class="Sicon_2"><%=listArr[i].pYear.toFixed(4)%>万kWh</div>
             </div>
         </li>
    <% } %>
