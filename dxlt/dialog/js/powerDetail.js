@@ -252,6 +252,7 @@ new Vue({
             vlm.loadJson("", JSON.stringify(Parameters), function (res) {
                 if (res.success) {
                     var result = res.data,hourMaxNum='';
+                    console.log(result.length)
                     if (result.length) {
                         var hourNum = result[0].fd_datetime < 10 ? result[0].fd_datetime.substring(1) : result[0].fd_datetime;
                         hourMaxNum = result[result.length - 1].fd_datetime < 10 ? result[result.length - 1].fd_datetime.substring(1) : result[result.length - 1].fd_datetime;
@@ -261,9 +262,15 @@ new Vue({
                                 _this.dclist.push('--');
                                 _this.aclist.push('--');
                             } else {
+                                console.log(i,hourNum)
+                                console.log(result[i - hourNum])
                                 //_this.radiaArr.push(result[i - hourNum].fd_radia_real.toString());
-                                _this.dclist.push(result[i - hourNum].fd_pdc_curr.toString());
-                                _this.aclist.push(result[i - hourNum].fd_pw_curr.toString());
+                                if (result[i - hourNum]) {
+                                     _this.dclist.push(result[i - hourNum].fd_pdc_curr.toString());
+                                    _this.aclist.push(result[i - hourNum].fd_pw_curr.toString());
+                                }
+                                // _this.dclist.push(result[i - hourNum].fd_pdc_curr.toString());
+                                // _this.aclist.push(result[i - hourNum].fd_pw_curr.toString());
                             }
                         }
                     }else{
